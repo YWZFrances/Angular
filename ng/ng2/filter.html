@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+
+    <script src="js/filter.js"></script>
+
+</head>
+<body ng-app="myApp" >
+<div ng-controller="filterCtrl">
+    <ul ng-controller="filterCtrl">
+        <li ng-repeat="data in dataList">
+
+            <p>姓名：{{data.name|lowercase|limitTo:3}}</p>
+            <p>age：{{data.age}}</p>
+            <p>身价：{{data.price|number}}</p>
+            <p>生日：{{data.time|date:'shortDate'}}</p>
+
+
+            <pre>{{data|json}}</pre>
+            <!--2016-12-20-->
+            <!--发现时间1970 是解析时间的方法有问题，或者时间戳有问题-->
+        </li>
+    </ul>
+    <p>{{name}}</p>
+    <pre>
+        是解析时
+        间的方法
+        有
+        问题
+
+    </pre>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+        //controller
+        function test1($scope,$rootScope) {
+            //model
+            $rootScope.name ="都润东r";
+            $scope.name = "何润东1";
+        };
+        //controller
+        function test2($scope) {
+            //model
+            //$scope.name = "周润东2";
+        };
+
+
+        function test10($rootScope) {
+            //model
+            $rootScope.name10 ="都润东10";
+
+        };
+
+    </script>
+</head>
+<body>
+<div ng-controller="test1">{{name}}</div>
+<div ng-controller="test2">{{name}}</div>
+<div>{{name}}</div>
+<div>
+    <h3>嵌套</h3>
+    <div ng-controller="test1">
+
+        <div ng-controller="test2">{{name}}</div>
+    </div>
+</div>
+<div>{{name10}}</div>
+
+<script>
+
+    var name = "root name";
+
+    function fn1() {
+        //var name = "fn1 name";
+
+        function fn2() {
+           // var name = "fn2 name";
+            alert(name)
+
+        }
+        fn2()
+    }
+
+
+    function fn10() {
+        window.name = "root 10"
+    }
+
+    fn1()
+</script>
+</body>
+</html>

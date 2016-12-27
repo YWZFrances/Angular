@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../angular.min.js"></script>
+
+    <script>
+
+
+        var m1 = angular.module("myApp",[]);
+        m1.factory("product",function () {
+            return {
+                list:[
+                    {
+                        "pid":1,
+                        "pName":"商品1",
+                        "price":2000,
+                        "number":330
+                    },
+                    {
+                        "pid":2,
+                        "pName":"商品2",
+                        "price":1000,
+                        "number":200
+                    },{
+                        "pid":3,
+                        "pName":"商品3",
+                        "price":300,
+                        "number":1220
+                    },{
+                        "pid":4,
+                        "pName":"商品4",
+                        "price":3020,
+                        "number":2220
+                    }
+                ],
+                addItem:function (item) {
+                    var newID = this.list[this.list.length-1].pid+1;//一般是数据库自动生成
+                    item.pid = newID;
+                    this.list.push(item)
+                },
+                removeItem:function (id) {
+                    console.log(id)
+                    for(var i=0;i<this.list.length;i++){
+                        //判断列表里面某个商品的id 如果和要删除的id 相等就删除
+                        if(this.list[i].pid == id){
+                            this.list.splice(i,1);
+                            break
+                        }
+                    }
+                }
+            }
+        });
+        m1.controller("myCtrl",["$scope","product",function ($scope,product) {
+            $scope.listData = product.list;
+            $scope.fnDelete = function (id) {
+                product.removeItem(id)
+            };
+            $scope.fnAdd=function () {
+                product.addItem({
+                    "pName":$scope.pName,
+                    "price":$scope.price,
+                    "number":$scope.number
+                })
+            }
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <ul>
+            <li ng-repeat="data in listData">
+                <p>{{data.pName}}</p>
+                <p>{{data.price}}</p>
+                <p>{{data.number}}</p>
+                <button ng-click="fnDelete(data.pid)">删除</button>
+            </li>
+        </ul>
+        <div>
+            <div><input ng-model="pName" placeholder="商品名称" /></div>
+            <div><input ng-model="price" placeholder="单价" /></div>
+            <div><input ng-model="number" placeholder="总数" /></div>
+            <button ng-click="fnAdd()">添加商品</button>
+        </div>
+    </div>
+
+
+</body>
+</html>

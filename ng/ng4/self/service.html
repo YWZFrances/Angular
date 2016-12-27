@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../angular.min.js"></script>
+
+    <script>
+
+        function Fn() {
+            this.name="lining";
+            this.hello=function () {
+                alert("hello "+this.name );
+            }
+        }
+        Fn.prototype.show=function () {};
+
+        var m1 = angular.module("myApp",[]);
+        m1.service("myService",Fn);
+
+
+        m1.factory("myFactory",function () {
+           return {
+                name:"lining",
+                hello:function () {
+                    alert("hello "+this.name );
+                }
+           }
+        });
+        m1.provider("myProvider",function () {
+            //需要返回供应商
+            return {
+                type:"made in provider",
+                $get:function () {
+                    
+                    
+                    return {
+                        name:"lining",
+                        hello:function () {
+                            alert("hello "+this.name );
+                        }
+                    }
+
+
+                }
+            }
+        });
+
+        m1.config(["myServiceProvider","myFactoryProvider","myProviderProvider",function (myServiceProvider,myFactoryProvider,myProviderProvider) {
+            console.log(myServiceProvider);
+            console.log(myFactoryProvider);
+            console.log(myProviderProvider)
+        }]);
+
+        m1.controller("myCtrl",["$scope","myService","myFactory","myProvider",function ($scope,myService,myFactory,myProvider) {
+            myService.hello();
+            console.log(myService)
+            console.log(myFactory)
+            console.log(myProvider)
+
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+
+    </div>
+
+
+</body>
+</html>

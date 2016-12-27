@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li { width: 200px; border: 1px solid #ccc; padding: 10px;}
+        img { width: 120px; height: 120px;}
+        input { width: 30px;}
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        angular.module("myApp",[]).controller("cartCtrl",["$scope","$http",function ($scope,$http) {
+            $scope.cartData= [];
+            $scope.totalNumber=0;
+            $scope.totalPrice=0;
+            //获取数据
+            $http.jsonp("http://datainfo.duapp.com/shopdata/getCar.php?callback=JSON_CALLBACK&userID=lining").success(function (data) {
+                $scope.cartData = data;
+            });
+
+            //事件
+            $scope.fnChange=function (type,index) {
+                //type: 0 -1 1
+                var num = $scope.cartData[index].number*1;
+                if(type){
+                    //加减
+                    $scope.cartData[index].number=num+type
+                }else {
+                    //删除
+                    $scope.cartData.splice(index,1)
+                }
+                //数据更新（和服务器端保持同步）
+            };
+            //监听购物车的数据
+            $scope.$watch("cartData",function (newVal,oldVal) {
+                //重新计算总和
+                var allNum =0;
+                var allPrice = 0;
+                for(var i=0;i<newVal.length;i++){
+                    allNum+=newVal[i].number*1;
+                    allPrice+=newVal[i].number*newVal[i].price
+                }
+                $scope.totalNumber=allNum;
+                $scope.totalPrice=allPrice;
+            },true)
+
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="cartCtrl">
+    <div>
+        总数量：<span ng-bind="totalNumber"></span>
+        ; 总金额：<em ng-bind="totalPrice|currency"></em>
+    </div>
+    <ul>
+        <li ng-repeat="data in cartData">
+
+            <img ng-src="{{data.goodsListImg}}">
+            <p ng-bind="data.goodsName"></p>
+            <p ng-bind="data.price|currency"></p>
+            <div>
+                <button ng-click="fnChange(-1,$index)">-</button>
+                <input ng-readonly="true" ng-value="data.number" />
+                <button ng-click="fnChange(1,$index)">+</button>
+            </div>
+            <p><button ng-click="fnChange(0,$index)">X</button></p>
+        </li>
+    </ul>
+</div>
+<script>
+    console.log(1);
+
+    var a;
+    function fn() {
+        var a;
+        console.log(a)
+        a =2;
+        console.log(a)
+    }
+    a =1;
+
+    fn()
+</script>
+</body>
+</html>
+
+<!-- 定位 50%  50%  margin -h/2  0 0 -w/2 必须知道元素宽高  margin的百分比是针对父级的--->
+<!-- 定位 0  0 0 0 ;  margin:auto--->
+<!-- 定位 50% 50% ;  transform:translate3d(-50%,-50%,0)  元素宽高未知--->

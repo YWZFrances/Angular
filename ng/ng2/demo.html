@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li { width: 200px; border: 1px solid #ccc; padding: 10px;}
+        img { width: 120px; height: 120px;}
+        input { width: 30px;}
+    </style>
+    <script src="../angular.min.js"></script>
+
+    <script>
+        var m1 = angular.module("myList",[])
+                //classID=1
+
+
+                .controller("listCtrl",["$scope","$http",function ($scope,$http) {
+                    $scope.dataList = [];
+                    var sendData = "classID=1&pageCode=1&linenumber=5";//{classID:1,pageCode:1}
+
+                    $http.jsonp("http://datainfo.duapp.com/shopdata/getGoods.php?callback=JSON_CALLBACK&"+sendData).success(function (data) {
+                        console.log(data);
+                        $scope.dataList = data
+                    });
+
+                    /*$http({"method":"jsonp","url":"http://datainfo.duapp.com/shopdata/getGoods.php?callback=JSON_CALLBACK"}).success(function (data) {
+                        console.log(data);
+                        $scope.dataList = data
+                    })*/
+
+                }])
+
+
+
+    </script>
+</head>
+<body ng-app="myList">
+    <div ng-controller="listCtrl">
+        <h2>商品列表</h2>
+
+        <ul>
+            <li ng-repeat="data in dataList">
+                <img src="{{data.goodsListImg}}" />
+                <div>
+                    <p>商品名称：{{data.goodsName}}</p>
+                    <p>价格：{{data.price}}</p>
+                    <p>分类：{{data.className}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

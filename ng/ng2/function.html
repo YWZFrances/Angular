@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+    <script src="jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+
+<script>
+    /*工具方法*/
+   /* $.each()
+    $.ajax()
+    $.get*/
+
+   /*isArray*/
+  /*  console.log(angular.isArray(112));
+    console.log(angular.isArray([]));
+    console.log(document.getElementsByTagName('body'))//伪数组
+    console.log(angular.isArray(document.getElementsByTagName('body')))*/
+
+    /*angular.isDate */
+
+  /*  var oDate = new Date();
+    oDate.setFullYear("2019");
+    console.log(angular.isDate(new Date()));
+    console.log(angular.isDate(new Date().getTime()));
+    console.log(angular.isDate("2016-12-20"))*/
+
+  /*copy*/
+  var obj1 = {a:1,json:{c:2}};
+  var obj2 = {};
+
+    /*浅拷贝*/
+/* for(var attr in obj1){
+     obj2[attr] = obj1[attr]
+ }
+ obj1.a = 10;
+ obj1.json.c = 20;
+ console.log(obj2);*/
+
+var obj2 =JSON.parse(JSON.stringify(obj1))//通过JSON方法实现深拷贝
+    obj1.a = 10;
+    obj1.json.c = 20;
+    console.log(obj2);
+/* var obj2 = angular.copy(obj1);
+    obj1.json.c = 20;
+    console.log(obj1);
+    console.log(obj2)*/
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../angular.min.js"></script>
+
+    <script>
+
+        var m1 = angular.module("myApp",[]);
+        m1.value("myValue","my value");
+        m1.constant("myConstant","my constant");
+
+
+        //constant 是可以通过 confing直接注入
+        m1.config(["myConstant",function (myConstant) {
+            console.log(myConstant)
+        }]);
+
+
+        m1.config(["$provide",function ($provide) {
+            //value 可以通过decorator装饰器修改
+            $provide.decorator("myValue",function ($delegate) {
+                return $delegate+"decorator"
+            })
+        }]);
+
+        m1.controller("myCtrl",["$scope","myValue",function ($scope,myValue) {
+            console.log(myValue)
+
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+
+    </div>
+
+
+</body>
+</html>

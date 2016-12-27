@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="angular.min.js"></script>
+    <style>
+
+        .red { background-color: red}
+    </style>
+</head>
+<body>
+
+
+<script>
+
+   // var obj = {a:1};
+ /*
+    可以吧obj copy到指定的对象里面
+    var obj2 = [];
+    angular.copy(obj,obj2);*/
+
+   // var obj2 =  angular.copy(obj);
+    //console.log(obj2)
+
+    /*extend继承*/
+ /*  var obj = {a:1};
+   var obj2 = {json:{m:10}};
+   angular.extend(obj,{b:2,c:3},{d:4,a:2},obj2);
+  console.log(obj)
+*/
+ /*bind*/
+/* var obj1 = {
+     name:"rundong",
+     showName:function (age) {
+         console.log(this.name+"; age："+age)
+     }
+ };
+ var obj2 = {name:"lining"};
+   //obj1.showName.call(obj2)
+   obj1.showName.bind(obj2)(10);
+    angular.bind(obj2,obj1.showName)(10)*/
+  /* var obj = {
+       name: 'lili',
+       show: function (country) {
+           console.log(this.name  + country);
+       }
+   };
+
+   var self = { name: 'wang' };
+   var bindShow = angular.bind(self, obj.show, 'china');
+   bindShow();///函数obj.show 。。。里面的this=>self
+    //console.log(bindShow)*/
+
+/*  console.log({a:1})
+  console.log(angular.toJson({a:1}));
+   console.log(JSON.stringify({a:1}));*/
+
+
+   //长得一样的
+ /*  console.log(1=="1");
+    console.log(angular.equals(1,"1"));
+   console.log(angular.equals({a:1},{a:1}))
+   console.log(angular.equals(NaN,NaN))*/
+
+  // console.log(angular.isElement($("body")));
+
+   //document.getElementsByTagName('body') 伪数组
+   //console.log(angular.isElement(document.getElementsByTagName('body')[0]));
+
+   var oBody = document.getElementsByTagName('body')[0];
+   console.log(angular.element(oBody));
+   angular.element(oBody).addClass("red");
+    console.log(angular.element===$);
+   if($){
+       angular.element = $
+   }
+   //鸡肋
+    //angular.element 不支持jq选择器
+
+</script>
+</body>
+</html>

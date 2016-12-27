@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+
+    <script>
+        angular.module("myApp",[]).controller("watchCtrl",["$scope",function ($scope) {
+            $scope.number = 5;
+            $scope.price = 100;
+            $scope.sum = 0;
+            $scope.$watch("number",function (newVal,oldVal) {
+                console.log(newVal)
+                console.log(oldVal)
+                $scope.sum = $scope.price*newVal
+            })
+        }])
+
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="watchCtrl">
+        <div>
+            <span>数量：</span>
+            <input ng-model="number" />
+        </div>
+        <div>
+            <span>单价：</span>
+            <em>{{price|currency}}</em>
+        </div>
+        <div>
+            <span>金额：</span>
+            <em>{{sum|currency}}</em>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+    <link href="iconfont/ux_1468209461_2248843/iconfont.css" rel="stylesheet" />
+
+    <script src="angular.min.js"></script>
+
+    <script>
+        angular.module("myApp",[]).controller("testCtrl",["$scope",function ($scope) {
+           // $scope.bShow = undefined
+            $scope.footer = "footer.html"
+
+        }]);
+
+    </script>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="testCtrl">
+
+
+        <p ng-show="false">show</p>
+        <p ng-hide="false">hide</p>
+        <p ng-if="false">if</p>
+
+        <button ng-click="bShow=!bShow">开关</button>
+
+        <div ng-switch="bShow" >
+            <p ng-switch-default="">关闭</p>
+            <p ng-switch-when="false">关闭</p>
+            <p ng-switch-when="true">打开</p>
+        </div>
+
+        <div class="wrap" ng-include="'footer.html'"></div>
+
+        <input ng-model="val" ng-model-options="{updateOn:'change',debounce:500}"/>
+        <p>{{val}}</p>
+    </div>
+
+<script>
+//ng-model-options 可以对 ng-model进行设置，
+// updateOn:在发生什么事件的时候同步数据(灵活控制同步数据的时间，可以节省实时同步数据对性能的开销)
+ //debounce:同步数据的延时时间
+
+
+
+</script>
+</body>
+</html>

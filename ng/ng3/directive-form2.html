@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .ng-valid {border:4px solid green}
+        .ng-invalid {border:4px solid red}
+    </style>
+    <link href="iconfont/ux_1468209461_2248843/iconfont.css" rel="stylesheet" />
+
+
+    <script src="angular.min.js"></script>
+
+    <script>
+        angular.module("myApp",[]).controller("testCtrl",["$scope","$timeout",function ($scope,$timeout) {
+             //可以获取   输入框的内容（$scope.val），通过传统的表单验证
+        }]);
+
+    </script>
+</head>
+<body ng-app="myApp">
+
+    <form name="f1">
+
+        <input type="text" name="text1" required="true" ng-minlength="6" ng-pattern="/^[a-z]+$/" ng-model="val"/>
+
+
+        <div>
+            <p>成功:{{f1.text1.$valid}}</p>
+            <p>不成功:{{f1.text1.$invalid}}</p>
+            <p>验证值没有修改:{{f1.text1.$pristine}}</p>
+            <p>验证值修改:{{f1.text1.$dirty}}</p>
+            <p>错误信息:{{f1.text1.$error}}</p>
+        </div>
+    </form>
+
+    <!--$valid 成功
+	$invalid 不成功
+$pristine  验证值没有修改
+$dirty  验证值修改
+$error  错误信息
+-->
+<script>
+
+</script>
+</body>
+</html>

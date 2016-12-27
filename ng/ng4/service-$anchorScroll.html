@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        * { margin: 0 ; padding: 0;}
+
+        div { height: 500px; margin: 20px;  background-color: #999;}
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+
+            angular.module("myApp",[]).controller("myCtrl",["$scope","$location","$anchorScroll",function ($scope,$location,$anchorScroll) {
+                $scope.fnJump=function () {
+                    $location.hash("div2")
+                    $anchorScroll()  //解决ng的锚点跳转问题
+                }
+
+        }])
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<button ng-click="fnJump()">jump</button>
+<div id="div1" style="background-color: red">page1</div>
+<div id="div2">page2</div>
+
+
+</body>
+</html>

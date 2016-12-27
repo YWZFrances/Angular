@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+        //controller
+        function test1($scope) { //依赖注入
+            $scope.val="输入文字";
+            $scope.fnChange=function (ev) {
+                //console.log(this)  =$scope
+                //想要得到input的value
+                //ev.target.value 通过event对象获取当前发生时间的input 的value
+                console.log(ev.target.value);
+                $scope.val = ev.target.value//让数据(m)等于获取到视图(v)里面的值
+
+            }
+        };
+
+
+    </script>
+</head>
+<body ng-app >
+<div ng-controller="test1">
+    <input type="text" ng-model="val"  />
+    <p>{{val}}</p>
+</div>
+
+<div ng-controller="test1">
+   <input type="text" ng-value="val" value="{{val}}" ng-keyup="fnChange($event)" />
+   <p>{{val}}</p>
+</div>
+<!--ng-value="val" === value="{{val}}"-->
+
+<!--ng-model把数据和视图绑定一起-->
+<!--
+
+
+
+
+<!--mvc 数据改变了，视图也会自动发生改变 m=v -->
+<!--当视图发生改变的时候，也想改变数据 v =>m -->
+<!--mvvm-->
+</body>
+</html>

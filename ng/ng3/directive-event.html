@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+    <link href="iconfont/ux_1468209461_2248843/iconfont.css" rel="stylesheet" />
+
+    <script src="angular.min.js"></script>
+
+    <script>
+        angular.module("myApp",[]).controller("testCtrl",["$scope","$timeout",function ($scope,$timeout) {
+
+            $scope.fnPaste =function (ev) {
+                //不要超过100ms
+                $timeout(function () {
+                    console.log(ev.target.value);
+                    console.log($scope.val)
+                },60);
+                //console.log($scope.val)
+            };
+            
+            $scope.fnChange=function () {
+                console.log($scope.val2);
+                //李宁
+                $scope.val2=$scope.val2.replace(/李宁/g,"**")
+            }
+
+        }]);
+
+    </script>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="testCtrl">
+        <input ng-model="val" ng-paste="fnPaste($event)"  />
+
+        <input ng-model="val2" ng-change="fnChange()"  />
+    </div>
+
+<script>
+
+</script>
+</body>
+</html>

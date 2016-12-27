@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.min.js"></script>
+    <script src="m2.js"></script>
+
+    <script>
+        var module1 = angular.module("myApp",["m2"]);//myApp是模块的名称，可以作为ng-app的值
+        function myCtrl2($scope) {
+            $scope.name ="my myCtrl2"
+        }
+        module1.controller("myCtrl2",myCtrl2);
+
+        module1.controller("myCtrl",function ($scope) {
+            $scope.name = "my myCtrl1"
+        });
+        module1.controller("myCtrl3",["$scope","$timeout",function ($scope,$timeout) {
+            $scope.name = "my myCtrl3";
+            $timeout(function () {
+                $scope.name = "我不怕压";
+            },2000)
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+<!--model 数据模型
+module 模块-->
+<div ng-controller="myCtrl">
+    <p>{{name}}</p>
+</div>
+<div ng-controller="myCtrl2">
+    <p>{{name}}</p>
+</div>
+<div ng-controller="myCtrl3">
+    <p>{{name}}</p>
+</div>
+
+<div ng-controller="myModule2Ctrl">
+    <p>{{name}}</p>
+</div>
+
+<script>
+    // 先加载内容，内容加载完成以后，在通过angular解析html内容，给标签里面的内容赋值
+    console.log(1)
+</script>
+</body>
+</html>

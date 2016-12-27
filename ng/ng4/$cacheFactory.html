@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+
+        angular.module("myApp",[]).controller("myCtrl",["$scope","$cacheFactory","$log",function ($scope,$cacheFactory,$log) {
+            //单页面应用临时存储数据，刷新页面就清除；
+            var cache1 = $cacheFactory("c1");//创建缓存对象
+            cache1.put("goodsID",10);
+            cache1.remove("goodsID");
+            console.log (cache1.get("goodsID"));
+            console.log(cache1);
+            console.log(cache1.info());
+
+            console.log("abc");
+            console.debug("abc");
+            console.info("abc");
+            console.warn("abc");
+            console.error("abc");
+
+
+            $log.log("abc");
+            $log.debug("abc");
+            $log.info("abc");
+            $log.warn("abc");
+            $log.error("abc");
+
+
+
+
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtrl">
+
+</div>
+
+</body>
+</html>

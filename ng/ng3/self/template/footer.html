@@ -1,0 +1,14 @@
+<div class="footer">
+    <ul>
+        <li ng-repeat="data in titleData" ng-class="{active:$index==active}">{{data}}</li>
+    </ul>
+
+    <!--active 是我需要选中的下标
+
+    $index是数组循环的时候的每一个li的下标
+
+
+    $index == active 就给li添加选中的样式
+
+    -->
+</div>

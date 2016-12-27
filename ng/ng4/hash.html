@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * { margin: 0 ; padding: 0;}
+        
+        div { height: 500px;  background-color: #999; display: none}
+    </style>
+</head>
+<body >
+    <a href="#div1">page1</a>
+    <a href="#div2">page2</a>
+<div id="div1" style="background-color: red">page1</div>
+<div id="div2">page2</div>
+
+<script>
+    var aDiv = document.getElementsByTagName("div");
+    //当页面加载的时候，调用pageChange，判断需要显示哪个页面
+    pageChange();
+    //window.location.hash ="div2";
+    //当hash值发生改变的时候，可以监听
+    window.onhashchange=function () {
+        //都隐藏
+        for(var i=0;i<aDiv.length;i++){
+            aDiv[i].style.display="none"
+        }
+        //调用pageChange，判断需要显示哪个页面
+        pageChange()
+    };
+
+    function pageChange() {
+        var hash =  window.location.hash; //#div2
+        switch (hash){
+            case "#div1":
+                //div1显示
+                aDiv[0].style.display = "block";
+                break;
+            case "#div2":
+                //div2显示
+                aDiv[1].style.display = "block";
+                break;
+            default:
+                //都隐藏
+                break;
+        }
+    }
+    
+
+
+
+
+
+</script>
+</body>
+</html>

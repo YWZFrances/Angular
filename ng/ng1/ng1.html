@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+        //controller
+        function test($scope) {
+            //model
+            $scope.name = "润东";
+        };
+
+        //controller
+        function test2($scope) {
+            //model
+            $scope.name = "周润东";
+        };
+        var jsName = "何润东"
+
+
+
+
+    </script>
+</head>
+<body>
+
+<div>
+    <p>{{1+1}}</p>
+    <p>{{'hello angular'}}</p>
+</div>
+
+<div>{{jsName}}</div>
+<div>{{name}}</div>
+
+
+<div ng-controller="test2">{{name}}</div>
+<!--view-->
+</body>
+</html>

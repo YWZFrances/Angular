@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+
+        angular.module("myApp",[]).controller("myCtrl",["$scope","$q",function ($scope,$q) {
+
+                var defer1 = $q.defer();//先创建一个延时对象
+                var promise = defer1.promise;
+            //创建一个承诺:于华斌承诺明天上课不睡觉,
+                promise.then(function (data) {
+                    //成功，恭喜你克服了睡觉的问题
+                    console.log("恭喜你克服了睡觉的问题")
+                },function (data) {
+                    //失败
+                    console.log("惩罚他同桌和他合唱，纤夫的爱!")
+                });
+            $scope.fnClick=function (shui) {
+                if(shui){
+                    defer1.reject("失败");
+                }else {
+                    defer1.resolve("成功");
+                }
+            }
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtrl">
+    <button ng-click="fnClick(true)">睡觉</button>
+    <button ng-click="fnClick(false)">不睡觉 </button>
+</div>
+
+</body>
+</html>

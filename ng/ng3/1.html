@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a { width: 100px;height: 100px; background-color: red}
+    </style>
+</head>
+<script src="../2/jquery-1.11.1.min.js"></script>
+<body>
+</body>
+<script>
+    $.get("text2.txt",function (data) {
+
+       document.body.innerHTML='<a title="'+data+'">详情</a>';
+
+    });
+
+</script>
+</html>

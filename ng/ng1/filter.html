@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+        //controller
+        function test1($scope,$timeout) { //依赖注入
+
+            $scope.name = "何润东1"; //挂载
+            $scope.dataList = [
+                {
+                    "name":"何润东",
+                    "age":28,
+                    "price":"2222222222"
+                },
+                {
+                    "name":"邹润东",
+                    "age":181,
+                    "price":"222"
+                },
+                {
+                    "name":"李宁",
+                    "age":38,
+                    "price":"28888888888"
+                },
+                {
+                    "name":"李娜",
+                    "age":17,
+                    "price":"333333"
+                }
+
+            ]; //列表数据
+            $scope.fnClick=function () {
+                $timeout(function () {
+                    $scope.name = "何润东2 update"
+                },1000)
+            };
+
+        };
+
+
+    </script>
+</head>
+<body ng-app >
+<div ng-controller="test1">
+    <p>{{name}}</p>
+
+    <button ng-click="fnClick()">change name</button>
+    <h3>orderBy</h3>
+    <ul>
+        <li ng-repeat="data in dataList|orderBy:'age':true|filter:'2'">
+            <p>{{$index}}</p>
+            <p>姓名：{{data.name|limitTo:3}}</p>
+            <p>年龄：{{data.age|limitTo:2}}</p>
+
+            <p>身价: {{data.price | currency:'￥'}}</p>
+        </li>
+    </ul>
+    <h3>filter</h3>
+    <ul>
+        <li ng-repeat="data in dataList|filter:'润东'">
+            <p>{{$index}}</p>
+            <p>姓名：{{data.name|limitTo:3}}</p>
+            <p>年龄：{{data.age}}</p>
+
+            <p>身价: {{data.price | currency:'￥'}}</p>
+        </li>
+    </ul>
+</div>
+
+<!--ng 事件里面的方法，应该是控制器提供给我们的方法-->
+</body>
+</html>

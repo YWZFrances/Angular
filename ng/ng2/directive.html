@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+    <script src="angular.min.js"></script>
+    <script>
+        angular.module("myApp",[]).controller("cartCtrl",["$scope",function ($scope) {
+            $scope.name="hello js"
+        }])
+    </script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="cartCtrl">
+        <a href="" ng-init="name='hello'" >ng link{{name}}</a>
+    </div>
+
+    <a href="">link</a>
+</body>
+</html>

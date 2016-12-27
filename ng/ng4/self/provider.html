@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../angular.min.js"></script>
+
+    <script>
+
+        var m1 = angular.module("myApp",[]);
+        m1.provider("myRandom",function () {
+            //需要返回供应商
+            return {
+                int:true,
+                $get:function () {
+
+
+                    return function (minNum,maxNum) {
+                        var number = Math.random()*(maxNum-minNum)+minNum;
+                        return this.int?parseInt(number):number
+
+                    }.bind(this)
+
+                }
+            }
+        });
+
+        m1.config(["myRandomProvider",function (myRandomProvider) {
+            myRandomProvider.int=false
+        }]);
+
+        m1.controller("myCtrl",["$scope","myRandom",function ($scope,myRandom) {
+           var number =  myRandom(10,20)
+            console.log(number)
+
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+    <link href="iconfont/ux_1468209461_2248843/iconfont.css" rel="stylesheet" />
+
+    <script src="angular.min.js"></script>
+
+    <script>
+        angular.module("myApp",[]).controller("testCtrl",["$scope",function ($scope) {
+
+            $scope.listData = [1,2,3,4,2,6];
+            //track by $index 给循环的每一项添加一个唯一的标示 $index
+
+        }]);
+
+    </script>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="testCtrl">
+
+        <div>
+            <p ng-repeat-start="data in listData track by $index ">下标:  {{$index}}</p>
+            <p>第一个：{{$first}}</p>
+            <p>中间：{{$middle}}</p>
+            <p>最后：{{$last}}</p>
+            <p>偶数：{{$even}}</p>
+            <p ng-repeat-end="">奇数：{{$odd}}</p>
+<!--如果循环到最后一个（循环结束），需要更新iscroll的高度-->
+        </div>
+    </div>
+
+<script>
+//ng-model-options 可以对 ng-model进行设置，
+// updateOn:在发生什么事件的时候同步数据(灵活控制同步数据的时间，可以节省实时同步数据对性能的开销)
+ //debounce:同步数据的延时时间
+
+
+    //ng-repeat-start 设置循环开始的标签;
+    // ng-repeat-end循环结束的标签
+
+
+</script>
+</body>
+</html>

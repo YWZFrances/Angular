@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+
+            angular.module("myApp",[]).controller("myCtrl",["$scope","$interpolate",function ($scope,$interpolate) {
+                $scope.text3 = "";
+                $scope.fnChange=function () {
+                    //通过插值的服务创建一个插值的对象temp（判断val3的值）
+                    var temp = $interpolate($scope.val3);
+                    //给插值对象设置要插入的值（插入text1是$scope.val1，text2是$scope.val2）
+                    $scope.text3 = temp({text1:$scope.val1,text2:$scope.val2})
+                }
+
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="myCtrl">
+    <input ng-model="val1" />
+    <input ng-model="val2" />
+
+    <textarea ng-model="val3" ng-change="fnChange()"></textarea>
+
+    <p>{{text3}}</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../angular.min.js"></script>
+    <script>
+        //controller
+        function test1($scope,$rootScope,$timeout) { //依赖注入
+            //model
+            $rootScope.name ="都润东r";
+            $scope.name = "何润东1";
+
+            $timeout(function () {
+                $scope.name = "何润东2 update"
+            },1000)
+        };
+
+    </script>
+</head>
+<body>
+<div ng-controller="test1">
+    {{name}}
+</div>
+<!--mvc 数据改变了，视图也会自动发生改变 m=v -->
+<!--当视图发生改变的时候，也想改变数据 v =>m -->
+<!--mvvm-->
+</body>
+</html>

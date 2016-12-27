@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li { width: 200px; border: 1px solid #ccc; padding: 10px;}
+        img { width: 120px; height: 120px;}
+        input { width: 30px;}
+        .red { background-color: red}
+        .blue { background-color: blue}
+    </style>
+    <link href="iconfont/ux_1468209461_2248843/iconfont.css" rel="stylesheet" />
+
+    <script src="angular.min.js"></script>
+
+    <script>
+        angular.module("myApp",[]).controller("cartCtrl",["$scope","$http",function ($scope,$http) {
+            $scope.textClass = {blue:true};
+            $scope.textStyle = {
+                color:"red",
+                backgroundColor:"green",
+                fontSize:"40px"
+            };
+            $scope.link = "cart.html"
+
+        }]);
+        //ng-style = {color：“red"}
+        //ng-class = {red：true} 表示是否拥有 .red 的class
+    </script>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="cartCtrl">
+        <p ng-class="textClass" >class</p>
+        <p style="background-color: red">style</p>
+
+
+        <p ng-style="textStyle">style</p>
+        <img ng-src="{{img}}">
+        <a ng-href="{{link}}">link</a>
+    </div>
+
+
+<script>
+
+
+
+
+</script>
+</body>
+</html>

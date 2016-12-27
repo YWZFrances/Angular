@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li { width: 200px; border: 1px solid #ccc; padding: 10px;}
+        img { width: 120px; height: 120px;}
+    </style>
+    <script src="../angular.min.js"></script>
+    <!--
+        1、$http
+
+        2、jquery ajax
+            +
+            $scope.$apply(function(){
+
+            })
+    -->
+    <script>
+        var m1 = angular.module("myList",[])
+                .controller("listCtrl",["$scope",function ($scope) {
+                    $scope.dataList = [
+                        {
+                            goodsID: "52",
+                            classID: "5",
+                            goodsName: "韩版女式宽松套头破洞牛仔长袖连帽卫衣",
+                            goodsListImg: "http://s18.mogucdn.com/p1/151021/11gcxq_ie4tqojzmvsgezrvgqzdambqgqyde_640x960.jpg_220x330.webp",
+                            price: "99",
+                            discount: "8",
+                            imgsUrl: '["http://s11.mogucdn.com/p1/151021/11gcxq_ie4tqojzmvsgezrvgqzdambqgqyde_640x960.jpg_468x468.jpg","http://s20.mogucdn.com/p1/151021/11gcxq_ie3tmytcgztgezrvgqzdambqgayde_1500x1500.jpg_468x468.jpg","http://s11.mogucdn.com/p1/151021/11gcxq_ie3timbshftgezrvgqzdambqgayde_1500x1500.jpg_468x468.jpg","http://s17.mogucdn.com/p1/151021/11gcxq_ie3wkmdgmvtgezrvgqzdambqgayde_1500x1500.jpg_468x468.jpg","http://s11.mogucdn.com/p1/151021/11gcxq_ie4dgmbugyyggzrvgqzdambqgiyde_1500x1500.jpg_468x468.jpg"]',
+                            className: "卫衣"
+                        },
+                        {
+                            goodsID: "57",
+                            classID: "3",
+                            goodsName: "波司登（BOSIDENG）羽绒服男款",
+                            goodsListImg: "http://img14.360buyimg.com/n2/jfs/t2257/88/581178076/140752/3173e831/5618c255Nc944c200.jpg",
+                            price: "899",
+                            discount: "8",
+                            imgsUrl: '["http://img12.360buyimg.com/n1/jfs/t2257/88/581178076/140752/3173e831/5618c255Nc944c200.jpg","http://img12.360buyimg.com/n1/jfs/t2215/71/603745802/135437/4bdc55fe/5618c235Nabc0d90a.jpg","http://img12.360buyimg.com/n1/jfs/t1990/125/567021870/132407/81c4ad03/5618c255N98bf1a5d.jpg","http://img12.360buyimg.com/n1/jfs/t2281/99/561964627/110805/f889c7db/5618c235N97a03231.jpg"]',
+                            className: "棉服"
+                        },
+                        {
+                            goodsName: "韩都衣舍韩版2015秋装新款女装翻领绣花图案长袖衬衫",
+                            goodsListImg: "https:////img.alicdn.com/bao/uploaded///img.alicdn.com/bao/uploaded/i4/TB1vGO5IFXXXXb4XXXXXXXXXXXX_!!0-item_pic.jpg_160x160q90.jpg",
+                            price: "260",
+                            discount: "6",
+                            imgsUrl: '["https://img.alicdn.com/imgextra/i1/263817957/TB2zHIOdFXXXXa_XpXXXXXXXXXX-263817957.jpg","https://img.alicdn.com/imgextra/i2/263817957/TB2BDgYdFXXXXc0XXXXXXXXXXXX-263817957.jpg","https://img.alicdn.com/imgextra/i1/263817957/TB22x77dFXXXXaPXXXXXXXXXXXX-263817957.jpg"]',
+                            className: "衬衫"
+                        },
+                        {
+                            goodsID: "3",
+                            classID: "1",
+                            goodsName: "韩都衣舍长袖衬衫",
+                            goodsListImg: "http://img.alicdn.com/bao/uploaded/i4/TB1QP0gJpXXXXczXpXXXXXXXXXX_!!0-item_pic.jpg_b.jpg",
+                            price: "198",
+                            discount: "0",
+                            imgsUrl: '["https://img.alicdn.com/imgextra/i4/263817957/TB21NJeeXXXXXcaXpXXXXXXXXXX-263817957.jpg","https://img.alicdn.com/imgextra/i1/263817957/TB21aXteXXXXXb7XXXXXXXXXXXX-263817957.jpg","https://img.alicdn.com/imgextra/i2/263817957/TB2PbtveXXXXXblXXXXXXXXXXXX-263817957.jpg","https://img.alicdn.com/imgextra/i2/263817957/TB2TQxfeXXXXXa3XpXXXXXXXXXX-263817957.jpg"]',
+                            className: "衬衫"
+                        }
+
+                    ];
+                    $scope.filterData = ["衬衫","韩都衣舍","男"];
+                    $scope.reverse = false;
+                    $scope.keyWord = "";
+                    $scope.fnSort=function () {
+                        //让reverse取反
+                        $scope.reverse=!$scope.reverse
+                    };
+
+                    $scope.fnFilter=function (index) {
+                        if(index=="all"){
+                            $scope.keyWord = ""
+                        }else {
+                            $scope.keyWord = $scope.filterData[index]
+                        }
+
+                    }
+
+                }])
+
+
+
+    </script>
+</head>
+<body ng-app="myList">
+    <div ng-controller="listCtrl">
+        <h2>商品列表</h2>
+        <div>
+            <button ng-click="fnSort()">{{reverse?"顺序":"倒序"}}</button>
+        </div>
+        <div>
+            <span>关键字：</span>
+            <button ng-click="fnFilter('all')">全部</button>
+            <button ng-repeat="data in filterData" ng-click="fnFilter($index)">{{data}}</button>
+
+        </div>
+        <ul>
+            <li ng-repeat="data in dataList|orderBy:'price*1':reverse|filter:keyWord">
+                <img src="{{data.goodsListImg}}" />
+                <div>
+                    <p>商品名称：{{data.goodsName}}</p>
+                    <p>价格：{{data.price}}</p>
+                    <p>分类：{{data.className}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

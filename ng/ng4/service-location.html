@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="angular.min.js"></script>
+    <script>
+
+            angular.module("myApp",[]).controller("myCtrl",["$scope","$location",function ($scope,$location) {
+
+
+               console.log("绝对地址:"+ $location.absUrl())
+               console.log("路径:"+ $location.path()) //路径
+                console.log($location.search()) //路径
+                console.log("hash:"+ $location.hash()) //路径
+               // console.log(window.location.hash)
+
+
+                console.log($location.port());
+                console.log($location.host());
+                console.log($location.protocol());
+                console.log("url:"+$location.url());
+
+                $scope.fnClick=function () {
+                    //$location.path("path1").replace()//在改变url的时候，不会有历史记录
+                    $location.hash("ngHash");
+                    $location.path("path1");
+                    $location.search({"goodID":10})
+
+
+                }
+        }])
+    </script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <button ng-click="fnClick()">按钮</button>
+    </div>
+
+</body>
+</html>
